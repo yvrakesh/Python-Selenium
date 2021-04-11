@@ -7,20 +7,16 @@ from fpdf import FPDF
 from datetime import date
 from datetime import datetime
 import os
+import getpass
 
 #Changes to be made by you
 
-
-# Add your respective folder path like "D:\\df\\Zoom" inside ''
-os.chdir('')
 # Add your instagram username and password to authenticate
 username = ''
 password = ''
-# Enter current windows user name
-pc_name = ''
-# Add whatsapp name to whom you need to send the pdf
+# Add whatsapp user's name to whom you need to send the pdf 
+# if the contact is not saved, number can also be entered but check the exact format including spaces
 whatsapp_name = ''
-
 
 #Nothing required to be changed after this
 
@@ -49,6 +45,8 @@ def get_people():
     driver.find_element_by_xpath("/html/body/div[5]/div/div/div[1]/div/div[2]/button").click()
     return names
 options = webdriver.ChromeOptions()
+pc_name = getpass.getuser()
+os.chdir('C:\\Users\\'+pc_name+'\\Downloads')
 options.add_argument("user-data-dir=C:\\Users\\"+pc_name+"\\AppData\\Local\\Google\\Chrome\\User Data\\Default")
 options.add_argument('start-maximized')
 options.add_experimental_option("excludeSwitches", ['enable-automation'])
@@ -132,7 +130,7 @@ while(1):
     except:
         continue
 driver.find_element_by_xpath('//div[@title = "Attach"]').click()
-driver.find_element_by_xpath('//input[@accept="image/*,video/mp4,video/3gpp,video/quicktime"]').send_keys("D:\\df\\Zoom\\instagram "+date+" "+time+".pdf")
+driver.find_element_by_xpath('//input[@accept="image/*,video/mp4,video/3gpp,video/quicktime"]').send_keys("C:\\Users\\"+pc_user+"\\Downloads\\instagram "+date+" "+time+".pdf")
 while(1):
     try:
         driver.find_element_by_xpath('//span[@data-icon="send"]').click()
