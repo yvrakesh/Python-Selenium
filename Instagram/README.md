@@ -15,3 +15,7 @@ Changes to be made by you:
                  (If you wish to send it to yourself In India +91 first_five_digits next_five_digits)
                  (+91 12345 67891) (in this format)
               4. If you wish you don't need to use whatsapp set the flag down to the whatsapp_name to 1
+
+You will get details in terminal as well as in a pdf file along with links to that person's profile.
+
+If you choose whatsapp it will be sent to your given contact else it will be stored in the local disk C downloads folder.
