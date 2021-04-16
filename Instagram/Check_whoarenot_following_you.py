@@ -23,6 +23,12 @@ from datetime import datetime
 import os
 import getpass
 
+def add_page(text,list):
+    pdf.add_page()
+    pdf.cell(200,10,txt=text,ln=1,align='C')
+    pdf.cell(200,10,str(len(list)),ln=1,align='C')
+    for i in list:
+        pdf.cell(100,5,'https://www.instagram.com/'+i,ln=1,align='L')
 def get_people():
     names = []
     names1 = []
@@ -32,7 +38,7 @@ def get_people():
     while prev_height != height:
         prev_height = height
         sleep(1)
-        for i in range(j,100000000):
+        for i in range(j,10000000000):
             try:
                 name = driver.find_element_by_xpath('/html/body/div[5]/div/div/div[2]/ul/div/li['+str(i)+']/div/div[1]/div[2]/div[1]/span/a').get_attribute('title')
                 try:
@@ -103,47 +109,23 @@ print('People who are not following me')
 print(not_following_back)
 print(str(len(not_following_back))+'\n\n\n')
 pdf = FPDF()
-pdf.add_page()
 pdf.set_font("Arial", size = 15)
-pdf.cell(200,10,txt="People who are not following me",ln=1,align='C')
-pdf.cell(200,10,str(len(not_following_back)),ln=1,align='C')
-for i in not_following_back:
-    pdf.cell(100,5,'https://www.instagram.com/'+i,ln = 1,align = 'L')
+add_page("People who are not following me",not_following_back)
 
 i_am_not = [i for i in followers if i not in following]
 print('People whom I am not following')
 print(i_am_not)
 print(str(len(i_am_not))+'\n\n\n')
-
-pdf.add_page()
-pdf.cell(200,10,txt="People I am not following",ln=1,align='C')
-pdf.cell(200,10,str(len(i_am_not)),ln=1,align='C')
-for i in i_am_not:
-    pdf.cell(100,5,'https://www.instagram.com/'+i,ln = 1,align = 'L')
+add_page("People I am not following",i_am_not)
 
 pdf.add_page()
 pdf.cell(200,10,txt="Celebraties I am following",ln=1,align='C')
 pdf.cell(200,10,str(len(celeb_following)),ln=1,align='C')
 for i in celeb_following:
     pdf.cell(100,5,'https://www.instagram.com/'+i,ln=1,align='L')
-
-pdf.add_page()
-pdf.cell(200,10,txt="Celebraties following me",ln=1,align='C')
-pdf.cell(200,10,str(len(celeb_followers)),ln=1,align='C')
-for i in celeb_followers:
-    pdf.cell(100,5,'https://www.instagram.com/'+i,ln=1,align='L')
-
-pdf.add_page()
-pdf.cell(200,10,txt="People following me",ln=1,align='C')
-pdf.cell(200,10,str(len(followers)),ln=1,align='C')
-for i in followers:
-    pdf.cell(100,5,'https://www.instagram.com/'+i,ln=1,align='L')
-
-pdf.add_page()
-pdf.cell(200,10,txt="People I am following",ln=1,align='C')
-pdf.cell(200,10,str(len(following)),ln=1,align='C')
-for i in following:
-    pdf.cell(100,5,'https://www.instagram.com/'+i,ln=1,align='L')
+add_page("Celebraties following me",celeb_followers)
+add_page("People following me",followers)
+add_page("People I am following",following)
 
 day,month,year = str(date.today().day),str(date.today().month),str(date.today().year)
 date = day+'-'+month+'-'+year
