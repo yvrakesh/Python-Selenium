@@ -12,7 +12,7 @@ Changes to be made by you:
               1. Add your instagram username (Required for authentication and also to visit your profile page)
               2. Add your instagram password (Required for authentication)
               3. Add whatsapp contact name to whom you wish to send
-                 (If you wish to send it to yourself In India +91 first_five_digits next_five_digits)
+                 (If you wish to send it to yourself In India +91<space>first_five_digits<space>next_five_digits)
                  (+91 12345 67891) (in this format)
               4. If you wish you don't need to use whatsapp set the flag down to the whatsapp_name to 1
 
